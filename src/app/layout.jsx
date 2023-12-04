@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <Navbar />
-        <div className='px-52 py-32 m-auto'>
+        <div className='px-52 py-52 m-auto'>
           {children}
         </div>
       </body>

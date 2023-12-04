@@ -9,21 +9,21 @@ const Navbar = () => {
     {
       key: '1',
       label: (
-        <div className='w-32 py-1 px-2'>
-          <Link href="/">
+        <Link href="/login">
+          <div className='w-32 py-1 px-2'>
             <h3>Login</h3>
-          </Link>
-        </div>
+          </div>
+        </Link>
       ),
     },
     {
       key: '2',
       label: (
-        <div className='w-32 py-1 px-2'>
-          <Link href="/">
+        <Link href="/register">
+          <div className='w-32 py-1 px-2'>
             <h3>Register</h3>
-          </Link>
-        </div>
+          </div>
+        </Link>
       ),
     }
   ]
@@ -50,7 +50,9 @@ const Navbar = () => {
       </div>
       <div className="w-screen bg-white py-4 px-24 flex justify-between items-center">
         <div className='flex items-center gap-4 w-3/4'>
-          <h1 className='font-semibold text-3xl'>Commerce</h1>
+          <Link href="/">
+            <h1 className='font-semibold text-3xl'>Commerce</h1>
+          </Link>
           <input type="text" placeholder='Search Product' className='border w-3/4 py-2 px-4 rounded-md outline-none'/>
         </div>
         <div className='flex gap-8 w-1/4 justify-end'>
