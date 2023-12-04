@@ -1,8 +1,10 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
-import { Dropdown } from 'antd';
+import React, { useState } from 'react'
+import { Dropdown, Drawer } from 'antd';
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false)
   const items = [
     {
       key: '1',
@@ -25,6 +27,15 @@ const Navbar = () => {
       ),
     }
   ]
+
+  const showDrawer = () => {
+    setOpen(true);
+  }
+
+  const onClose = () => {
+    setOpen(false);
+  }
+
   return (
     <div className='fixed z-40 '>
       <div className='py-2 px-24 bg-blue-800 text-white flex justify-between items-center'>
@@ -47,10 +58,13 @@ const Navbar = () => {
               <i className='bx bx-heart text-2xl cursor-pointer' />
               <h3 className='text-sm cursor-pointer'>Wishlist</h3>
           </div>
-          <div className='flex flex-col text-center'>
+          <div className='flex flex-col text-center' onClick={showDrawer}>
               <i className='bx bx-cart text-2xl cursor-pointer' />
               <h3 className='text-sm cursor-pointer'>Cart</h3>
           </div>
+          <Drawer title="Cart" placement='right' onClose={onClose} open={open}>
+            <h1>Cart</h1>
+          </Drawer>
           <Dropdown
             menu={{items,}}
             placement='bottomRight'
