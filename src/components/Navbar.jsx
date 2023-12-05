@@ -39,7 +39,7 @@ const Navbar = () => {
   return (
     <div className='fixed z-40 '>
       <div className='py-2 px-24 bg-blue-800 text-white flex justify-between items-center'>
-        <p className='text-sm font-light'><i class='bx bxs-phone' ></i> Hotline 0812 3456 7890</p>
+        <p className='text-sm font-light'><i className='bx bxs-phone' ></i> Hotline 0812 3456 7890</p>
         <div>
           <ul className='flex gap-5 text-sm font-light'>
             <li>About Us</li>
