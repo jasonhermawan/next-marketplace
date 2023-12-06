@@ -4,7 +4,7 @@ import * as yup from 'yup'
 import React, { useState } from 'react'
 import axios from 'axios';
 import { Spin } from 'antd';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
   const router = useRouter();

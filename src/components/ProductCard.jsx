@@ -1,9 +1,12 @@
+"use client"
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
 const ProductCard = (props) => {
+  const router = useRouter();
   return (
     <div className='w-1/6 p-2'>
-      <div className='border border-neutral-100 rounded-md'>
+      <div className='border border-neutral-100 rounded-md cursor-pointer' onClick={() => router.push(`/product/${props.id}`)}>
         <img src={props.image} className='w-full rounded-t-md' alt={props.name} />
         <div className='p-2'>
           <h3 className='text-md font-semibold text-red-500'>Rp {(props.price).toLocaleString("id")}</h3>

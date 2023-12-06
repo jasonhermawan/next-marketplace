@@ -9,6 +9,7 @@ export default async function Home() {
       return (
         <ProductCard
           key={val.id}
+          id={val.id}
           image={`${process.env.NEXT_PUBLIC_API_BASE_URL}/public/products/${val.product_images[0].image}`}
           price={val.normalPrice}
           name={val.name}
@@ -16,7 +17,7 @@ export default async function Home() {
       )
     })
   }
-  
+
   return (
     <div>
       <CarouselComponent />
