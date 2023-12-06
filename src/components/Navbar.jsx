@@ -1,32 +1,56 @@
 "use client"
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Dropdown, Drawer } from 'antd';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Navbar = () => {
+  const pathname = usePathname()
+  const router = useRouter()
+  const token = localStorage.getItem("token")
   const [open, setOpen] = useState(false)
   const items = [
     {
       key: '1',
-      label: (
-        <Link href="/login">
+      label: token ? 
+        (
+        <Link href="/user/dashboard">
           <div className='w-32 py-1 px-2'>
-            <h3>Login</h3>
+            <h3>Dashboard</h3>
           </div>
         </Link>
-      ),
+        ) 
+        : 
+        (
+          <Link href="/login">
+            <div className='w-32 py-1 px-2'>
+              <h3>Login</h3>
+            </div>
+          </Link>
+        )
     },
     {
       key: '2',
-      label: (
-        <Link href="/register">
-          <div className='w-32 py-1 px-2'>
-            <h3>Register</h3>
+      label: token ? 
+        (
+          <div className='w-32 py-1 px-2' onClick={() => {localStorage.clear(); router.push("/login")}}>
+            <h3>Logout</h3>
           </div>
-        </Link>
-      ),
+        ) 
+        : 
+        (
+          <Link href="/register">
+            <div className='w-32 py-1 px-2'>
+              <h3>Register</h3>
+            </div>
+          </Link>
+        )
     }
   ]
+  
+  useEffect(() => {
+    items
+  }, [pathname])
 
   const showDrawer = () => {
     setOpen(true);
@@ -68,7 +92,7 @@ const Navbar = () => {
             <h1>Cart</h1>
           </Drawer>
           <Dropdown
-            menu={{items,}}
+            menu={{items}}
             placement='bottomRight'
             arrow
           >
