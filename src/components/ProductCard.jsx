@@ -13,7 +13,7 @@ const ProductCard = (props) => {
             <p className='text-sm line-through'>{props.discount ? `Rp ${(props.price).toLocaleString("id")}` : null}</p>
             <h3 className='text-md font-semibold text-red-500'>Rp {(props.discount ? props.discount : props.price).toLocaleString("id")}</h3>
           </div>
-          <h1 className='text-md font-semibold mt-2 line-clamp-2'>{props.name}</h1>
+          <h1 className='text-md font-semibold mt-2 line-clamp-2 h-12'>{props.name}</h1>
         </div>
         <div className='p-2 flex items-center justify-between'>
           <div className='flex gap-0.5'>
