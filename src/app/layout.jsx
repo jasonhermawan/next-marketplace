@@ -19,12 +19,12 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <StoreProvider>
         <body className={inter.className}>
+          <StoreProvider>
             <Navbar />
             <div className="px-52 py-52 m-auto">{children}</div>
+          </StoreProvider>
         </body>
-      </StoreProvider>
     </html>
   );
 }
