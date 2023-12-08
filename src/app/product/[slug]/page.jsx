@@ -23,7 +23,9 @@ const DetailProduct = async (props) => {
           <p className='text-xl line-through mt-4 text-neutral-500'>{(response.data[0].discountPrice ? `Rp ${(response.data[0].normalPrice).toLocaleString("id")}` : "")}</p>
           <h3 className='text-2xl mt-2 font-semibold'>Rp {(response.data[0].discountPrice ? response.data[0].discountPrice : response.data[0].normalPrice).toLocaleString("id")}</h3>
           <p className='mt-8'>{response.data[0].description}</p>
-          <TransactionBtn />
+          <TransactionBtn 
+            data={response.data[0]}
+          />
         </div>
       </div>
     </div>

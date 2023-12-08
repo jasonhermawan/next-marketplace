@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { Dropdown, Drawer, Empty, Badge } from "antd";
+import { Dropdown, Drawer, Badge } from "antd";
 import { usePathname, useRouter } from "next/navigation";
+import CartNav from "./CartNav";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -99,7 +100,7 @@ const Navbar = () => {
             <h3 className="text-sm cursor-pointer">Cart</h3>
           </div>
           <Drawer title="Cart" placement="right" onClose={onClose} open={open}>
-            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            <CartNav />
           </Drawer>
           <Dropdown menu={{ items }} placement="bottomRight" arrow>
             <div className="flex flex-col text-center">
