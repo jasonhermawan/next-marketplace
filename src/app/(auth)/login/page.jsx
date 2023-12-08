@@ -2,11 +2,13 @@
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
+import { message } from 'antd';
 
 const Login = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [messageApi, contextHolder] = message.useMessage();
 
   const handleLogin = async () => {
     try {
@@ -19,12 +21,20 @@ const Login = () => {
       setPassword("");
       router.push("/")
     } catch (error) {
+      messageApi.open({
+        type: 'error',
+        content: 'Wrong email / password',
+        duration: 3,
+      });
+      setEmail("");
+      setPassword("");
       console.log(error);
     }
   }
 
   return (
     <div className='w-2/6 bg-white shadow-md m-auto p-6 rounded-md'>
+      {contextHolder}
       <h1 className='mb-8 text-center font-semibold text-3xl'>Welcome Back</h1>
       <div className='mb-4'>
         <h3 className='mb-1'>Email</h3>

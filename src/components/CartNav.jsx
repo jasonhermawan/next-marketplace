@@ -1,10 +1,12 @@
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Empty } from "antd";
 
 const CartNav = () => {
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const cartData = useSelector((state) => state.cart.value)
-  console.log("cart data",cartData);
 
   const printCartList = () => {
     return cartData.map((val) => {
@@ -22,9 +24,27 @@ const CartNav = () => {
     })
   }
 
+  const total = () => {
+    let total = 0;
+    cartData.forEach((val) => {
+      total += val.discountPrice ? val.discountPrice*val.quantity : val.normalPrice*val.quantity
+    })
+    setTotalPrice(total);
+  }
+
+  useEffect(() => {
+    total()
+  }, [cartData])
+
   return (
     <div>
       {printCartList().length ? printCartList() : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />}
+      <div className="absolute bottom-10 left-6 right-6">
+        <h3 className="mb-4 text-lg font-semibold">Total : {totalPrice.toLocaleString("id")}</h3>
+        <button className="w-full bg-blue-800 text-white p-3 rounded-md">
+          Go to cart page
+        </button>
+      </div>
     </div>
   )
 };

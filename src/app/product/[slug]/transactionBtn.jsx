@@ -3,18 +3,25 @@ import React from "react";
 import { message } from 'antd';
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
+import { useRouter } from "next/navigation";
 
 const TransactionBtn = (props) => {
+  const token = localStorage.getItem("token")
+  const router = useRouter()
   const dispatch = useDispatch();
   const [messageApi, contextHolder] = message.useMessage();
 
   const onAddToCart = () => {
-    dispatch(addToCart(props.data))
-    messageApi.open({
-      type: 'success',
-      content: 'Add to cart success',
-      duration: 3,
-    });
+    if (token) {
+      dispatch(addToCart(props.data))
+      messageApi.open({
+        type: 'success',
+        content: 'Add to cart success',
+        duration: 3,
+      });
+    } else {
+      router.push("/login")
+    }
   }
 
   return (

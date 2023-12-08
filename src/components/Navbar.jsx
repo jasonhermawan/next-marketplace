@@ -4,11 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Dropdown, Drawer, Badge } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import CartNav from "./CartNav";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const pathname = usePathname();
   const router = useRouter();
   const token = localStorage.getItem("token");
+  const cartItems = useSelector((state) => state.cart.value);
   const [open, setOpen] = useState(false);
   const items = [
     {
@@ -94,7 +96,7 @@ const Navbar = () => {
             <h3 className="text-sm cursor-pointer">Wishlist</h3>
           </div>
           <div className="flex flex-col text-center items-center" onClick={showDrawer}>
-            <Badge count={1}>
+            <Badge count={cartItems.length}>
               <i className="bx bx-cart text-2xl cursor-pointer" />
             </Badge>
             <h3 className="text-sm cursor-pointer">Cart</h3>

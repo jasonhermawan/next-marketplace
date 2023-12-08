@@ -3,12 +3,14 @@ import { useFormik } from 'formik';
 import * as yup from 'yup'
 import React, { useState } from 'react'
 import axios from 'axios';
-import { Spin } from 'antd';
+import { Spin, message } from 'antd';
 import { useRouter } from 'next/navigation';
 
 const Register = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const registerAccount = async () => {
     try {
       setLoading(true)
@@ -20,6 +22,11 @@ const Register = () => {
       })
       router.push("/login")
     } catch (error) {
+      messageApi.open({
+        type: 'error',
+        content: 'Register failed, email is already registered',
+        duration: 3,
+      });
       console.log(error);
     } finally {
       setLoading(false)
@@ -51,6 +58,7 @@ const Register = () => {
 
   return (
     <div className='w-2/5 bg-white shadow-md m-auto p-6 rounded-md'>
+      {contextHolder}
       <h1 className='mb-8 text-center font-semibold text-3xl'>Create Account</h1>
       <div className='mb-4'>
         <h3 className='mb-1'>Username</h3>
