@@ -63,6 +63,10 @@ const Navbar = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    onClose()
+  }, [pathname])
+
   return (
     <div className="fixed z-40 ">
       <div className="py-2 px-24 bg-blue-800 text-white flex justify-between items-center">
